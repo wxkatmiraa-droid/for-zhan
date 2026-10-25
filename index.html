@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#15100d" />
+    <title>для вас, жан</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+:root {
+  --bg: #15100d;
+  --bg-2: #1e1713;
+  --bg-3: #29201a;
+  --paper: #f4e8d3;
+  --ink: #2a1d17;
+  --red: #d1402f;
+  --gold: #f0c36a;
+  --muted: #b9a995;
+  --line: rgba(244, 232, 211, 0.14);
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hand: "Caveat", "Segoe Script", cursive;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+
+.wrap { width: min(1100px, 100% - 40px); margin-inline: auto; padding-block: clamp(56px, 9vw, 110px); }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 900; line-height: 1.05; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.6rem, 8vw, 5.4rem); }
+h2 { font-size: clamp(2rem, 5.2vw, 3.4rem); }
+h2 em, h1 em { font-style: italic; font-weight: 700; color: var(--gold); }
+h3 { font-size: 1.6rem; }
+
+.kicker {
+  margin: 0 0 14px;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 700;
+}
+.lead { color: var(--muted); font-size: 1.1rem; max-width: 34em; margin: 18px 0 0; }
+.section-head { margin-bottom: clamp(30px, 5vw, 56px); }
+
+/* ---------- верхняя панель ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: rgba(21, 16, 13, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-brand { font-family: var(--hand); font-size: 1.6rem; text-decoration: none; color: var(--gold); white-space: nowrap; }
+.topbar-nav { display: flex; gap: 20px; font-size: 0.88rem; overflow-x: auto; scrollbar-width: none; }
+.topbar-nav::-webkit-scrollbar { display: none; }
+.topbar-nav a { text-decoration: none; color: var(--muted); white-space: nowrap; transition: color .2s; }
+.topbar-nav a:hover { color: var(--paper); }
+@media (max-width: 640px) { .topbar-nav a:nth-child(n+4) { display: none; } }
+
+/* ---------- главная ---------- */
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 64px); align-items: center; min-height: 82vh; }
+.hero .lead { margin-top: 24px; }
+.down {
+  display: inline-flex; gap: 10px; margin-top: 32px; text-decoration: none;
+  font-family: var(--hand); font-size: 1.7rem; color: var(--gold);
+}
+.down span { display: inline-block; animation: bob 1.6s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(6px); } }
+
+.hero-ticket { position: relative; padding: 20px 0 70px; }
+.ticket-hero { transform: rotate(-4deg); }
+.cake { position: absolute; width: 56%; right: -2%; bottom: -10px; transform: rotate(6deg); filter: drop-shadow(0 12px 18px rgba(0,0,0,.45)); }
+.flame { transform-origin: center bottom; animation: flicker 1.4s ease-in-out infinite; }
+.flame.f2 { animation-delay: .3s; } .flame.f3 { animation-delay: .7s; }
+@keyframes flicker { 50% { transform: scale(.85, 1.12); opacity: .85; } }
+
+/* ---------- билетный компонент ---------- */
+.ticket {
+  display: flex;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-mask:
+    radial-gradient(circle 13px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 13px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle 13px at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 13px at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+}
+.ticket-main { flex: 1; padding: 22px 22px 22px 30px; }
+.ticket-small { margin: 0 0 8px; font-size: 0.7rem; letter-spacing: .14em; text-transform: uppercase; opacity: .65; font-weight: 700; }
+.ticket-big { margin: 0 0 18px; font-family: var(--serif); font-weight: 900; font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1; }
+.ticket-row { display: flex; gap: 18px; font-size: 0.95rem; font-weight: 600; }
+.ticket-row b { display: block; font-size: 0.62rem; letter-spacing: .14em; text-transform: uppercase; opacity: .55; }
+.ticket-stub {
+  width: 84px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  border-left: 2px dashed rgba(42, 29, 23, .35);
+  background: var(--red); color: var(--paper);
+}
+.stub-text { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 800; letter-spacing: .2em; font-size: .78rem; }
+.stub-num { font-family: var(--serif); font-weight: 900; }
+
+/* ---------- счётчики ---------- */
+.counter { padding-block: 0 clamp(40px, 6vw, 80px); }
+.counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.count-card {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px 20px; display: flex; flex-direction: column; gap: 6px;
+}
+.count-card-red { background: var(--red); border-color: transparent; color: var(--paper); }
+.count-num { font-family: var(--serif); font-weight: 900; font-size: clamp(1.9rem, 4.4vw, 3rem); line-height: 1; }
+.count-label { font-size: .86rem; color: var(--muted); }
+.count-card-red .count-label { color: rgba(244,232,211,.85); }
+.counter-foot { margin: 18px 4px 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 760px) { .counter-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- история ---------- */
+.story-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; position: relative; }
+.story-list::before { content: ""; position: absolute; left: 22px; top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(var(--line) 0 8px, transparent 8px 16px); }
+.story-item { position: relative; padding-left: 64px; }
+.story-item::before {
+  content: ""; position: absolute; left: 14px; top: 26px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--red); box-shadow: 0 0 0 6px var(--bg);
+}
+.story-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
+.story-card.has-photo { display: grid; grid-template-columns: 1fr 200px; gap: 22px; }
+.story-tag { display: inline-block; margin-bottom: 8px; padding: 3px 12px; border-radius: 999px; background: var(--paper); color: var(--ink); font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.story-card h3 { margin-bottom: 10px; }
+.story-card p { margin: 0; color: #e0d3bd; }
+.story-card img { width: 100%; height: 100%; max-height: 240px; object-fit: cover; border-radius: 10px; }
+@media (max-width: 640px) { .story-card.has-photo { grid-template-columns: 1fr; } .story-item { padding-left: 48px; } .story-list::before { left: 14px; } .story-item::before { left: 6px; } }
+
+/* ---------- фото ---------- */
+.photo-wall { columns: 3 220px; column-gap: 18px; }
+.polaroid {
+  break-inside: avoid; margin: 0 0 22px; background: var(--paper); color: var(--ink);
+  padding: 10px 10px 14px; border-radius: 4px; box-shadow: 0 14px 28px rgba(0,0,0,.4);
+  transition: transform .3s;
+}
+.polaroid:nth-child(odd) { transform: rotate(-1.6deg); }
+.polaroid:nth-child(even) { transform: rotate(1.4deg); }
+.polaroid:hover { transform: rotate(0) scale(1.02); }
+.polaroid img { width: 100%; border-radius: 2px; }
+.polaroid figcaption { margin-top: 10px; font-family: var(--hand); font-size: 1.35rem; line-height: 1.1; text-align: center; }
+.polaroid figcaption:empty { display: none; }
+
+/* ---------- фразы ---------- */
+.quote-list { display: grid; gap: 14px; max-width: 640px; }
+.quote { background: var(--bg-3); border-radius: 18px 18px 18px 4px; padding: 14px 18px; width: fit-content; max-width: 100%; }
+.quote small { display: block; margin-top: 4px; color: var(--muted); font-size: .75rem; }
+
+/* ---------- голосовые ---------- */
+.voice-list { display: grid; gap: 14px; max-width: 560px; }
+.voice { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+.voice p { margin: 0 0 8px; font-weight: 600; }
+.voice small { color: var(--muted); font-weight: 400; margin-left: 8px; }
+.voice audio { width: 100%; }
+
+/* ---------- словарик ---------- */
+.words-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(20px, 4vw, 48px); align-items: start; }
+.dict { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.dict li { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; }
+.dict .w { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.9rem; color: var(--gold); line-height: 1.1; }
+.dict .m { font-weight: 700; margin-top: 2px; }
+.dict .n { color: var(--muted); font-size: .92rem; margin-top: 4px; }
+.chat { background: var(--bg-2); border: 1px solid var(--line); border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.chat-title { margin: 0 0 6px; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.bubble { padding: 10px 16px; border-radius: 18px; max-width: 80%; font-weight: 500; }
+.bubble-in { background: var(--bg-3); border-bottom-left-radius: 4px; align-self: flex-start; }
+.bubble-out { background: var(--red); border-bottom-right-radius: 4px; align-self: flex-end; }
+@media (max-width: 760px) { .words-layout { grid-template-columns: 1fr; } }
+
+/* ---------- билеты ---------- */
+.ticket-list { display: grid; gap: 28px; }
+.t-ticket { display: flex; position: relative; transition: transform .25s; }
+.t-ticket:not(.used):hover { transform: translateY(-3px) rotate(-.4deg); }
+.t-ticket .ticket-main { padding: 26px 26px 26px 34px; }
+.t-ticket h3 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin-bottom: 8px; }
+.t-ticket p { margin: 0; }
+.t-text { max-width: 36em; opacity: .85; }
+.t-actions { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.t-actions label { font-size: .8rem; font-weight: 700; display: block; width: 100%; opacity: .7; }
+.t-actions input, .t-actions textarea {
+  width: 100%; max-width: 420px; padding: 10px 12px; border-radius: 8px; border: 1.5px solid rgba(42,29,23,.35);
+  background: rgba(255,255,255,.55); color: var(--ink); font: inherit;
+}
+.t-actions textarea { resize: vertical; min-height: 72px; }
+.btn {
+  appearance: none; border: 0; cursor: pointer; font: inherit; font-weight: 700; padding: 11px 20px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); transition: transform .15s, background .2s;
+}
+.btn:hover { transform: translateY(-1px); background: #3d2b22; }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid rgba(42,29,23,.4); }
+.link-btn { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-size: .8rem; cursor: pointer; text-decoration: underline; opacity: .6; color: inherit; }
+.t-stamp {
+  position: absolute; right: 120px; top: 50%; transform: translateY(-50%) rotate(-14deg);
+  border: 4px solid var(--red); color: var(--red); padding: 4px 16px; border-radius: 8px;
+  font-weight: 900; letter-spacing: .12em; font-size: 1.6rem; pointer-events: none; opacity: .88;
+}
+.t-ticket.used .ticket-main { opacity: .72; }
+.t-ticket.used .ticket-stub { background: #7b6a5c; }
+.t-result { width: 100%; margin-top: 14px; padding: 14px; border-radius: 10px; background: rgba(42,29,23,.08); }
+.t-result p { margin: 0 0 10px; font-weight: 600; }
+.t-result > p:first-child { padding-right: 210px; min-height: 64px; }
+@media (max-width: 600px) { .t-result > p:first-child { padding-right: 0; padding-top: 52px; } }
+.t-done-note { font-size: .82rem; opacity: .7; margin-top: 8px !important; }
+@media (max-width: 600px) { .ticket-stub { width: 58px; } .t-stamp { right: 70px; font-size: 1.2rem; top: auto; bottom: 150px; transform: rotate(-10deg); } }
+
+/* ---------- открой, когда ---------- */
+.envelope-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.envelope {
+  appearance: none; cursor: pointer; text-align: left; font: inherit; color: var(--ink);
+  background: var(--paper); border: 0; border-radius: 8px; padding: 26px 20px 20px; position: relative; min-height: 150px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.35); transition: transform .2s;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 4px;
+}
+.envelope::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 62px; background: linear-gradient(to bottom right, transparent 49.5%, rgba(42,29,23,.18) 50%) left / 50.2% 100% no-repeat, linear-gradient(to bottom left, transparent 49.5%, rgba(42,29,23,.18) 50%) right / 50.2% 100% no-repeat; }
+.envelope::after { content: "♥"; position: absolute; top: 34px; left: 50%; transform: translateX(-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: var(--paper); display: grid; place-items: center; font-size: .8rem; }
+.envelope:hover { transform: translateY(-4px) rotate(-1deg); }
+.envelope small { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; opacity: .6; }
+.envelope strong { font-family: var(--serif); font-size: 1.35rem; line-height: 1.1; }
+
+.letter-dialog { border: 0; padding: 0; background: var(--paper); color: var(--ink); border-radius: 14px; width: min(560px, calc(100% - 32px)); max-height: 86vh; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.letter-dialog::backdrop { background: rgba(10, 7, 5, .78); backdrop-filter: blur(4px); }
+.letter-dialog[open] { animation: pop .3s ease-out; }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.97); } }
+.letter { padding: clamp(26px, 5vw, 44px); }
+.letter h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin-bottom: 18px; }
+.letter-text p { margin: 0 0 14px; font-size: 1.05rem; }
+.letter-sign { font-family: var(--hand); font-size: 1.9rem; margin: 18px 0 0; color: var(--red); }
+.dialog-close { position: absolute; right: 12px; top: 10px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(42,29,23,.1); font-size: 1.5rem; cursor: pointer; color: var(--ink); }
+
+/* ---------- расстояние ---------- */
+.distance-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(20px, 4vw, 48px); align-items: start; }
+.map-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; color: var(--paper); }
+.map { width: 100%; height: auto; }
+.map text { fill: var(--paper); font-family: var(--serif); font-weight: 700; font-size: 20px; }
+.map-label { margin: 8px 6px 4px; color: var(--muted); }
+.map-label strong { color: var(--gold); font-family: var(--serif); font-size: 1.3rem; }
+.plans h3 { margin-bottom: 18px; }
+.plan-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.plan-list li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; }
+.plan-list .box { flex: none; width: 22px; height: 22px; margin-top: 2px; border: 2px solid var(--gold); border-radius: 6px; display: grid; place-items: center; font-size: .8rem; color: var(--bg); }
+.plan-list li.done .box { background: var(--gold); }
+.plan-list li.done span:last-child { text-decoration: line-through; opacity: .6; }
+.plan-date { margin: 18px 4px 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 820px) { .distance-layout { grid-template-columns: 1fr; } }
+
+/* ---------- подвал ---------- */
+.footer { text-align: center; border-top: 1px solid var(--line); }
+.footer-big { font-family: var(--serif); font-size: clamp(1.4rem, 3.4vw, 2.2rem); line-height: 1.25; margin: 0 auto 22px; max-width: 24em; }
+.footer-big em { color: var(--gold); }
+.footer-sign { font-family: var(--hand); font-size: 1.5rem; color: var(--muted); margin: 0; }
+
+/* ---------- появление ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.no-js .reveal { opacity: 1; transform: none; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .hero-ticket { max-width: 460px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .flame, .down span { animation: none; }
+  .plane { display: none; }
+}
+
+</style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="topbar-brand" href="#top">для вас, жан</a>
+      <nav class="topbar-nav" aria-label="разделы">
+        <a href="#story">история</a>
+        <a href="#words">словарик</a>
+        <a href="#tickets">билеты</a>
+        <a href="#open-when">открой, когда</a>
+        <a href="#distance">встреча</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- ГЛАВНАЯ -->
+      <section class="hero wrap">
+        <div class="hero-copy reveal">
+          <p class="kicker">маленький сайт</p>
+          <h1>Один торт.<br />Пять встреч.<br /><em>и много много «сагындым».</em></h1>
+          <p class="lead">Я не очень умею говорить такое вслух, поэтому вот вам целый сайт.</p>
+          <a class="down" href="#counter">пош пош ылдыйга <span>↓</span></a>
+        </div>
+
+        <div class="hero-ticket reveal" aria-hidden="true">
+          <div class="ticket ticket-hero">
+            <div class="ticket-main">
+              <p class="ticket-small">кинотеатр «У подъезда»</p>
+              <p class="ticket-big">ЛЮБОВЬ<br />С ПЕРВОГО<br />КУСКА</p>
+              <div class="ticket-row">
+                <span><b>дата</b>16.03</span>
+                <span><b>ряд</b>торт</span>
+                <span><b>место</b>рядом</span>
+              </div>
+            </div>
+            <div class="ticket-stub">
+              <span class="stub-text">ADMIT ONE</span>
+              <span class="stub-num">№ 16</span>
+            </div>
+          </div>
+          <svg class="cake" viewBox="0 0 220 190" role="img" aria-label="торт, от которого откусили кусок">
+            <defs>
+              <mask id="bite">
+                <rect width="220" height="190" fill="#fff" />
+                <circle cx="168" cy="92" r="22" fill="#000" />
+                <circle cx="186" cy="112" r="16" fill="#000" />
+              </mask>
+            </defs>
+            <ellipse cx="110" cy="166" rx="92" ry="14" fill="#2b211b" />
+            <g mask="url(#bite)">
+              <rect x="30" y="86" width="160" height="72" rx="14" fill="#8a3b2a" />
+              <rect x="30" y="118" width="160" height="10" fill="#f4e8d3" opacity=".9" />
+              <path d="M30 100c0-20 18-26 34-22 10-14 34-14 44-2 14-10 38-4 42 10 16-4 40 2 40 14v6H30z" fill="#f4e8d3" />
+            </g>
+            <g class="candles">
+              <rect x="78" y="46" width="7" height="32" rx="2" fill="#d1402f" />
+              <rect x="106" y="40" width="7" height="38" rx="2" fill="#f0c36a" />
+              <rect x="134" y="48" width="7" height="30" rx="2" fill="#d1402f" />
+              <ellipse class="flame" cx="81.5" cy="38" rx="5" ry="8" fill="#f0c36a" />
+              <ellipse class="flame f2" cx="109.5" cy="32" rx="5" ry="8" fill="#f0c36a" />
+              <ellipse class="flame f3" cx="137.5" cy="40" rx="5" ry="8" fill="#f0c36a" />
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- СЧЁТЧИКИ -->
+      <section class="counter wrap" id="counter">
+        <div class="counter-grid">
+          <div class="count-card reveal">
+            <span class="count-num" data-days>—</span>
+            <span class="count-label" data-days-label>дней вместе</span>
+          </div>
+          <div class="count-card reveal">
+            <span class="count-num" data-months>—</span>
+            <span class="count-label">с 16 марта</span>
+          </div>
+          <div class="count-card reveal">
+            <span class="count-num">5</span>
+            <span class="count-label">встреч, и все в марте</span>
+          </div>
+          <div class="count-card count-card-red reveal">
+            <span class="count-num" data-next>—</span>
+            <span class="count-label" data-next-label>до встречи</span>
+          </div>
+        </div>
+        <p class="counter-foot reveal" data-anniv></p>
+      </section>
+
+      <!-- ИСТОРИЯ -->
+      <section class="story wrap" id="story">
+        <div class="section-head reveal">
+          <p class="kicker">наша история</p>
+          <h2>С чего всё <em>началось</em></h2>
+          <p class="lead">Всё это правда. Я ничего не придумывала, и вы это знаете.</p>
+        </div>
+        <ol class="story-list" data-story></ol>
+      </section>
+
+      <!-- ФОТО -->
+      <section class="gallery wrap" id="photos" data-photos-section hidden>
+        <div class="section-head reveal">
+          <p class="kicker">немножко кадров</p>
+          <h2>Тут могла быть красивая подпись, но пусть будете просто <em>вы</em></h2>
+        </div>
+        <div class="photo-wall" data-photos></div>
+      </section>
+
+      <!-- ФРАЗЫ -->
+      <section class="quotes wrap" data-quotes-section hidden>
+        <div class="section-head reveal">
+          <p class="kicker">из чата</p>
+          <h2>Ваши лучшие <em>фразы</em></h2>
+        </div>
+        <div class="quote-list" data-quotes></div>
+      </section>
+
+      <!-- ГОЛОСОВЫЕ -->
+      <section class="voices wrap" data-voices-section hidden>
+        <div class="section-head reveal">
+          <p class="kicker">нажмите и послушайте</p>
+          <h2>Голосовые</h2>
+        </div>
+        <div class="voice-list" data-voices></div>
+      </section>
+
+      <!-- СЛОВАРИК -->
+      <section class="words wrap" id="words">
+        <div class="section-head reveal">
+          <p class="kicker">словарик</p>
+          <h2>Как говорить с <em>этой девушкой</em></h2>
+          <p class="lead">Слова, из которых на 80% состоит наш чат.</p>
+        </div>
+        <div class="words-layout">
+          <ul class="dict" data-dict></ul>
+          <div class="chat reveal" aria-label="пример диалога">
+            <p class="chat-title">пример диалога</p>
+            <div class="bubble bubble-in">не кылтас жан?</div>
+            <div class="bubble bubble-out">иштеее</div>
+            <div class="bubble bubble-in">а вы?</div>
+            <div class="bubble bubble-out">билбейм</div>
+            <div class="bubble bubble-in">сагындым</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- БИЛЕТЫ -->
+      <section class="tickets wrap" id="tickets">
+        <div class="section-head reveal">
+          <p class="kicker">три билета, каждый действует один раз</p>
+          <h2>Ваши <em>билеты</em></h2>
+          <p class="lead">Нажмите «использовать» — билет погасится, а я получу сообщение (скопируйте его и пришлите мне).</p>
+        </div>
+        <div class="ticket-list" data-tickets></div>
+      </section>
+
+      <!-- ОТКРОЙ, КОГДА -->
+      <section class="open-when wrap" id="open-when">
+        <div class="section-head reveal">
+          <p class="kicker">на разные случаи жизни</p>
+          <h2>Открой, <em>когда…</em></h2>
+        </div>
+        <div class="envelope-grid" data-envelopes></div>
+      </section>
+
+      <!-- РАССТОЯНИЕ И ПЛАНЫ -->
+      <section class="distance wrap" id="distance">
+        <div class="section-head reveal">
+          <p class="kicker">немного километров</p>
+          <h2>Ош — Москва, <em>и обратно</em></h2>
+        </div>
+        <div class="distance-layout">
+          <div class="map-card reveal">
+            <svg viewBox="0 0 620 320" class="map" role="img" aria-label="схема: два города, соединённых пунктирной линией">
+              <defs>
+                <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                  <path d="M32 0H0V32" fill="none" stroke="currentColor" stroke-opacity=".08" />
+                </pattern>
+              </defs>
+              <rect width="620" height="320" fill="url(#grid)" />
+              <path id="route" d="M110 90C250 60 430 120 500 230" fill="none" stroke="#f0c36a" stroke-width="2.5" stroke-dasharray="8 10" stroke-linecap="round" />
+              <g class="city-dot">
+                <circle cx="110" cy="90" r="9" fill="#d1402f" />
+                <circle cx="110" cy="90" r="18" fill="none" stroke="#d1402f" stroke-opacity=".5" />
+                <text x="110" y="52" text-anchor="middle" data-city-b>Москва</text>
+              </g>
+              <g class="city-dot">
+                <circle cx="500" cy="230" r="9" fill="#d1402f" />
+                <circle cx="500" cy="230" r="18" fill="none" stroke="#d1402f" stroke-opacity=".5" />
+                <text x="500" y="282" text-anchor="middle" data-city-a>Ош</text>
+              </g>
+              <g class="plane">
+                <path d="M0 0l-12 5 3-5-3-5z" fill="#f4e8d3" />
+                <animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#route" /></animateMotion>
+              </g>
+            </svg>
+            <p class="map-label"><strong data-km>≈ 3 000 км</strong> по прямой. Для сообщений это вообще не расстояние.</p>
+          </div>
+
+          <div class="plans reveal">
+            <h3>Что мы сделаем, когда увидимся</h3>
+            <ul class="plan-list" data-plans></ul>
+            <p class="plan-date" data-plan-date></p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer wrap reveal">
+        <p class="footer-big">Я всё ещё не умею нормально говорить о чувствах.<br /><em>Но, кажется, это уже довольно очевидно.</em></p>
+        <p class="footer-sign">сделано с мээримом и махабатом,<br />и с помощью ИИ, чтобы оло кринжовать эттам</p>
+      </footer>
+    </main>
+
+    <dialog class="letter-dialog" data-dialog>
+      <form method="dialog"><button class="dialog-close" aria-label="закрыть">×</button></form>
+      <div class="letter">
+        <p class="kicker" data-letter-when></p>
+        <h2 data-letter-title></h2>
+        <div class="letter-text" data-letter-text></div>
+        <p class="letter-sign" data-letter-sign></p>
+      </div>
+    </dialog>
+
+    <script>
+/* =========================================================
+   ВСЁ СОДЕРЖИМОЕ САЙТА ЖИВЁТ ЗДЕСЬ.
+   Чтобы что-то добавить или поменять — правишь этот файл
+   (на GitHub: открыть data.js → значок карандаша → Commit).
+   Вёрстку (index.html, style.css) трогать не нужно.
+   ========================================================= */
+
+window.SITE = {
+  // С какого дня считаем «вместе» (ГГГГ-ММ-ДД)
+  start: "2026-03-16",
+
+  // Дата следующей встречи. Пока неизвестна — оставь null.
+  // Когда будет известна, впиши, например: "2027-04-20"
+  nextMeeting: null,
+
+  // Расстояние по прямой между городами, км
+  km: 3061,
+  cities: ["Ош", "Москва"],
+
+  /* ---------- НАША ИСТОРИЯ ----------
+     Чтобы добавить запись — скопируй блок { ... }, вставь в конец.
+     photo — необязательно: путь к фото, например "assets/photos/mart-1.jpg" */
+  story: [
+    {
+      tag: "16 марта",
+      title: "Торт",
+      text: "Мне исполнилось 19. Мои подруги, совершенно спонтанно, пришли поздравить меня с тортом. А вместе с ними пришли вы. Мы были возле моего подъезда, я предложила всем откусить торт и предложила вам, хотя мы даже не были знакомы. Вы потом всегда говорите, что влюбились именно тогда.",
+      photo: ""
+    },
+    {
+      tag: "Встреча №1",
+      title: "Под подъездом",
+      text: "Первая встреча была возле подъезда, с тортом. Когда подруги уехали, вы спросили мой номер у них и написали. А на следующий день принесли нам поесть.",
+      photo: ""
+    },
+    {
+      tag: "Встреча №2",
+      title: "Кино",
+      text: "Только мы вдвоём. Вы почему-то вы купили билеты на ужастик, но мне не было страшно, потому что мы шутили и смеялись весь вечер. Было комфортно и хоpoшо",
+      photo: ""
+    },
+    {
+      tag: "Встреча №3",
+      title: "Друзья и дорога домой",
+      text: "Вы познакомили меня с друзьями, и мне было не очень, я просто сказала об этом, и мы ушли. Наверное, уже тогда я поняла, что вы мне нравитесь.Потом мы опять пошли в кино, а домой возвращались пешком и разговаривали обо всём. Тогда я окончательно убедилась, что вы хороший человек.",
+      photo: ""
+    },
+    {
+      tag: "Встреча №4",
+      title: "Пирожки в 5 утра",
+      text: "Я болела. Вы принесли таблетки и ещё подумали, что утром мне на работу и я буду голодная, и купили пирожки. В 5 утра.",
+      photo: ""
+    },
+    {
+      tag: "Встреча №5",
+      title: "Мороженое",
+      text: "День вашего вылета в Москву. Несмотря на сборы, вы хотели меня увидеть. Мы купили мороженое и ели на скамейке под моим домом. Моё растаяло, и я случайно испачкалась. Вы не посмотрели косо, а засмеялись, зашли в магазин, купили влажные салфетки и сами меня вытерли. И ещё купили мне Kinder. Это была наша последняя встреча.",
+      photo: ""
+    },
+    {
+      tag: "Через ~10 дней",
+      title: "«начали встречаться?»",
+      text: "К тому времени вы уже были в Москве. Вы спросили, буду ли я вашей девушкой. Я не была уверена, но сказала «да». Так мы начали встречаться, хотя виделись всего пять раз.",
+      photo: ""
+    }
+  ],
+
+  /* ---------- СЛОВАРИК ---------- */
+  dictionary: [
+    { word: "не кылтас?", mean: "иштеспи?", note: "Главный вопрос нашего чата. Задаётся каждый день." },
+    { word: "иштее", mean: "жакшы шугур", note: "Самый частый ответ на «не кылтас? и кандайс?»." },
+    { word: "билбейм", mean: "не знаю", note: "Универсальный ответ на всё. Используется чаще всего." },
+    { word: "сагындым", mean: "я тоже", note: "Самое важное слово в этом списке." }
+  ],
+
+  /* ---------- БИЛЕТЫ ----------
+     type: "fixed"  — просто активируется
+           "day"    — нужно выбрать дату
+           "custom" — нужно вписать своё желание */
+  tickets: [
+    {
+      id: "consent",
+      type: "fixed",
+      no: "01",
+      title: "Билет на моё согласие",
+      text: "Я соглашусь на что угодно. Без оговорок и без «билбейм». Действует один раз.",
+      message: "Использую билет №1, «Согласие». Теперь ты соглашаешься, без оговорок."
+    },
+    {
+      id: "day",
+      type: "day",
+      no: "02",
+      title: "День для вас",
+      text: "Выбираете любое число, и мы проводим этот день вместе. Если у меня не будет критических планов.",
+      message: "Использую билет №2, «День для вас». Выбираю день: {value}. Проведём его вместе."
+    },
+    {
+      id: "empty",
+      type: "custom",
+      no: "03",
+      title: "Пустой билет",
+      text: "Вы вписываете сюда что хотите, а я это выполню.",
+      message: "Использую билет №3, «Пустой». Моё желание: {value}"
+    }
+  ],
+
+  /* ---------- «ОТКРОЙ, КОГДА…» ----------
+     Чтобы добавить письмо — скопируй блок и вставь в конец. */
+  openWhen: [
+    {
+      when: "скучаете",
+      title: "не десем экен эми",
+      text: "я очень рада что познакомилась с вами, не люблю сопливые письма но хочу что бы вы знали\n\nя очень ценю уважаю и восхощаюсь вами. создун кыскасы конулумо жагаста",
+      sign: "обнимаю, дееееее"
+    },
+    {
+      when: "не знаешь, что мне написать",
+      title: "Всегда подходит",
+      text: "Напишите «не кылтасын жан?». Я отвечу «парада» или «жаатам». Но отвечу.",
+      sign: "проверено временем"
+    },
+    {
+      when: "не спится",
+      title: "Тихо, ночь",
+      text: "Если не спится, значит, вы опять о чём-то думаете. Напишите мне. Скорее всего, я отвечу «билбейм», но это не значит, что мне всё равно. Жазаберин смело",
+      sign: "спокойной ночи"
+    },
+    {
+      when: "грустно",
+      title: "Вспомните пирожки",
+      text: "Человек, который в 5 утра несёт таблетки и пирожки, не может грустить долго. Это научный факт, который я только что придумала. Напишите мне, жан.",
+      sign: "я рядом, хоть и далеко"
+    },
+    {
+      when: "захотелось посмеяться",
+      title: "Мороженое",
+      text: "Растаявшее мороженое. Влажные салфетки. Kinder. Теперь вы улыбаетесь, да?",
+      sign: "работает всегда"
+    },
+    {
+      when: "мы поссорились",
+      title: "Перерыв на 10 минут",
+      text: "Если вы читаете это после ссоры, значит, я, наверное, ещё злюсь. Но люблю всё равно. Предлагаю: 10 минут тишины, потом разговор. Без оговорок .",
+      sign: "я же ваша, даже когда злюсь деее"
+    }
+  ],
+
+  /* ---------- ПЛАНЫ НА ВСТРЕЧУ ----------
+     done: true — когда пункт выполнен */
+  plans: [
+    { text: "Встретиться", done: false },
+    { text: "Сходить в кино. Билетти мен тандайын ", done: false },
+    { text: "Купить мороженое в глобусе", done: false },
+    { text: "Откусить торт по очереди, как в первый раз", done: false },
+    { text: "Нагулять километры пешком и поговорить обо всём", done: false }
+  ],
+
+  /* ---------- ЕГО ФРАЗЫ ИЗ ЧАТА ----------
+     Раздел появится сам, когда сюда что-то добавишь.
+     Пример: { text: "текст фразы", date: "апрель" }
+     Скриншоты переписок лучше не выкладывать: сайт открыт по ссылке. */
+  quotes: [],
+
+  /* ---------- ГОЛОСОВЫЕ ----------
+     Положи файл в assets/voice/ и впиши сюда.
+     Формат лучше mp3 или m4a (ogg в Safari не играет).
+     Пример: { file: "assets/voice/golos1.mp3", title: "Первое голосовое", date: "апрель" } */
+  voices: [],
+
+  /* ---------- ФОТО ----------
+     Положи фото в assets/photos/ и впиши сюда.
+     Пример: { file: "assets/photos/foto1.jpg", caption: "подпись", date: "март" }
+     Старые фото лежат в корне репозитория, поэтому они подключены по именам.
+     Если какого-то файла нет, он просто не покажется. */
+  photos: [
+    { file: "780023661_3956922207936540_8446477987456235881_n.jpg", caption: "", date: "" },
+    { file: "780949266_1065498379692877_4208779593505697318_n.jpg", caption: "", date: "" },
+    { file: "783506432_1544050427469267_5677181897569048044_n.jpg", caption: "", date: "" },
+    { file: "784506429_4574950326127016_1217801816645950335_n.jpg", caption: "", date: "" },
+    { file: "785361929_1543706953523826_1234172318469752345_n.jpg", caption: "", date: "" },
+    { file: "786870377_1356107016237861_2795231643967210905_n.jpg", caption: "", date: "" },
+    { file: "IMG_1917.jpg", caption: "", date: "" }
+  ]
+};
+
+</script>
+    <script>
+(function () {
+  "use strict";
+
+  var D = window.SITE || {};
+  document.documentElement.classList.remove("no-js");
+
+  /* ---------- помощники ---------- */
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function paragraphs(text) {
+    return String(text || "").split(/\n{2,}/).map(function (p) {
+      return "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>";
+    }).join("");
+  }
+  function plural(n, forms) {
+    var a = Math.abs(n) % 100, b = a % 10;
+    if (a > 10 && a < 20) return forms[2];
+    if (b > 1 && b < 5) return forms[1];
+    if (b === 1) return forms[0];
+    return forms[2];
+  }
+  function parseDate(str) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(str || "");
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+  function today() { var t = new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+  function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
+  function fmtDate(d) {
+    return d.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" }).replace(/\s*г\.?$/, "");
+  }
+  function store(key, val) {
+    try {
+      if (val === undefined) return JSON.parse(localStorage.getItem(key) || "null");
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch (e) { /* хранилище недоступно — не страшно */ }
+    return null;
+  }
+
+  /* ---------- счётчики ---------- */
+  function renderCounters() {
+    var start = parseDate(D.start), now = today();
+    if (start) {
+      var days = Math.max(0, daysBetween(start, now));
+      $("[data-days]").textContent = String(days);
+      $("[data-days-label]").textContent = plural(days, ["день вместе", "дня вместе", "дней вместе"]);
+
+      var months = (now.getFullYear() - start.getFullYear()) * 12 + now.getMonth() - start.getMonth();
+      var anchor = new Date(start.getFullYear(), start.getMonth() + months, start.getDate());
+      if (anchor > now) { months -= 1; anchor = new Date(start.getFullYear(), start.getMonth() + months, start.getDate()); }
+      var rest = daysBetween(anchor, now);
+      var txt = months + " " + plural(months, ["месяц", "месяца", "месяцев"]);
+      if (rest > 0) txt += " " + rest + " " + plural(rest, ["день", "дня", "дней"]);
+      $("[data-months]").textContent = txt;
+      $("[data-months]").style.fontSize = "clamp(1.3rem, 3vw, 1.9rem)";
+
+      var next = new Date(now.getFullYear(), start.getMonth(), start.getDate());
+      if (next <= now) next = new Date(now.getFullYear() + 1, start.getMonth(), start.getDate());
+      var left = daysBetween(now, next);
+      $("[data-anniv]").textContent = "До нашей первой годовщины, " + fmtDate(next) + ": " +
+        left + " " + plural(left, ["день", "дня", "дней"]) + ".";
+    }
+
+    var meet = parseDate(D.nextMeeting);
+    var nEl = $("[data-next]"), lEl = $("[data-next-label]");
+    if (meet) {
+      var d = daysBetween(now, meet);
+      if (d > 0) {
+        nEl.textContent = String(d);
+        lEl.textContent = plural(d, ["день до встречи", "дня до встречи", "дней до встречи"]);
+      } else if (d === 0) {
+        nEl.textContent = "сегодня!";
+        lEl.textContent = "мы встречаемся";
+      } else {
+        nEl.textContent = "уже";
+        lEl.textContent = "встретились";
+      }
+    } else {
+      nEl.textContent = "?";
+      lEl.textContent = "до встречи: весна или лето";
+    }
+  }
+
+  /* ---------- история ---------- */
+  function renderStory() {
+    var list = $("[data-story]");
+    list.innerHTML = (D.story || []).map(function (s) {
+      var photo = s.photo ? '<img src="' + esc(s.photo) + '" alt="' + esc(s.title) + '" loading="lazy">' : "";
+      return '<li class="story-item reveal"><div class="story-card' + (photo ? " has-photo" : "") + '">' +
+        "<div><span class=\"story-tag\">" + esc(s.tag) + "</span><h3>" + esc(s.title) + "</h3><p>" + esc(s.text) + "</p></div>" +
+        photo + "</div></li>";
+    }).join("");
+    list.querySelectorAll(".story-card img").forEach(function (img) {
+      img.addEventListener("error", function () {
+        var card = img.closest(".story-card");
+        img.remove();
+        if (card) card.classList.remove("has-photo");
+      });
+    });
+  }
+
+  /* ---------- фото ---------- */
+  function renderPhotos() {
+    var items = D.photos || [];
+    var section = $("[data-photos-section]"), wall = $("[data-photos]");
+    if (!items.length) return;
+    section.hidden = false;
+    wall.innerHTML = items.map(function (p) {
+      var cap = [p.caption, p.date].filter(Boolean).join(" · ");
+      return '<figure class="polaroid"><img src="' + esc(p.file) + '" alt="' + esc(cap || "фото") + '" loading="lazy">' +
+        "<figcaption>" + esc(cap) + "</figcaption></figure>";
+    }).join("");
+    wall.querySelectorAll("img").forEach(function (img) {
+      img.addEventListener("error", function () {
+        var fig = img.closest("figure");
+        if (fig) fig.remove();
+        if (!wall.children.length) section.hidden = true;
+      });
+    });
+  }
+
+  /* ---------- фразы и голосовые ---------- */
+  function renderQuotes() {
+    var items = D.quotes || [];
+    if (!items.length) return;
+    $("[data-quotes-section]").hidden = false;
+    $("[data-quotes]").innerHTML = items.map(function (q) {
+      return '<div class="quote reveal">' + esc(q.text) + (q.date ? "<small>" + esc(q.date) + "</small>" : "") + "</div>";
+    }).join("");
+  }
+  function renderVoices() {
+    var items = D.voices || [];
+    if (!items.length) return;
+    $("[data-voices-section]").hidden = false;
+    $("[data-voices]").innerHTML = items.map(function (v) {
+      return '<div class="voice reveal"><p>' + esc(v.title || "Голосовое") + (v.date ? "<small>" + esc(v.date) + "</small>" : "") +
+        '</p><audio controls preload="none" src="' + esc(v.file) + '"></audio></div>';
+    }).join("");
+  }
+
+  /* ---------- словарик ---------- */
+  function renderDict() {
+    $("[data-dict]").innerHTML = (D.dictionary || []).map(function (w) {
+      return '<li class="reveal"><div class="w">' + esc(w.word) + '</div><div class="m">= ' + esc(w.mean) +
+        '</div><div class="n">' + esc(w.note) + "</div></li>";
+    }).join("");
+  }
+
+  /* ---------- билеты ---------- */
+  var TKEY = "for-zhanka-tickets-v1";
+
+  function ticketHTML(t, st) {
+    var used = st && st.used;
+    var actions = "";
+    if (used) {
+      actions =
+        '<div class="t-result"><p>' + esc(st.message) + '</p>' +
+        '<button class="btn" type="button" data-copy>Скопировать сообщение</button>' +
+        '<p class="t-done-note">Билет погашен. Отправьте это сообщение мне :)<br>' +
+        '<button class="link-btn" type="button" data-reset>вернуть билет (если нажали случайно)</button></p></div>';
+    } else if (t.type === "day") {
+      actions = '<label for="in-' + esc(t.id) + '">Выберите день</label><input id="in-' + esc(t.id) +
+        '" type="date" data-input><button class="btn" type="button" data-use>Использовать</button>';
+    } else if (t.type === "custom") {
+      actions = '<label for="in-' + esc(t.id) + '">Впишите своё желание</label><textarea id="in-' + esc(t.id) +
+        '" data-input placeholder="например: ..."></textarea><button class="btn" type="button" data-use>Использовать</button>';
+    } else {
+      actions = '<button class="btn" type="button" data-use>Использовать</button>';
+    }
+    return '<article class="ticket t-ticket reveal' + (used ? " used" : "") + '" data-id="' + esc(t.id) + '">' +
+      '<div class="ticket-main"><p class="ticket-small">билет № ' + esc(t.no) + "</p><h3>" + esc(t.title) +
+      '</h3><p class="t-text">' + esc(t.text) + '</p><div class="t-actions">' + actions + "</div></div>" +
+      '<div class="ticket-stub"><span class="stub-text">ADMIT ONE</span><span class="stub-num">№ ' + esc(t.no) + "</span></div>" +
+      (used ? '<span class="t-stamp">ПОГАШЕН</span>' : "") + "</article>";
+  }
+
+  function copyText(text, btn) {
+    function done() { if (btn) { var old = btn.textContent; btn.textContent = "Скопировано ✓"; setTimeout(function () { btn.textContent = old; }, 1800); } }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) { /* ничего */ }
+      ta.remove();
+    }
+  }
+
+  function renderTickets() {
+    var box = $("[data-tickets]");
+    var state = store(TKEY) || {};
+    var tickets = D.tickets || [];
+
+    box.innerHTML = tickets.map(function (t) { return ticketHTML(t, state[t.id]); }).join("");
+
+    box.addEventListener("click", function (e) {
+      var el = e.target.closest("article.t-ticket");
+      if (!el) return;
+      var t = tickets.filter(function (x) { return x.id === el.dataset.id; })[0];
+      if (!t) return;
+      var st = store(TKEY) || {};
+
+      if (e.target.closest("[data-use]")) {
+        var value = "";
+        var input = $("[data-input]", el);
+        if (t.type !== "fixed") {
+          value = (input && input.value || "").trim();
+          if (!value) { if (input) input.focus(); return; }
+          if (t.type === "day") {
+            var d = parseDate(value);
+            if (d) value = fmtDate(d);
+          }
+        }
+        var msg = String(t.message || "").replace("{value}", value);
+        st[t.id] = { used: true, message: msg, at: Date.now() };
+        store(TKEY, st);
+        el.outerHTML = ticketHTML(t, st[t.id]).replace("reveal", "reveal in");
+      } else if (e.target.closest("[data-copy]")) {
+        copyText((st[t.id] || {}).message || "", e.target.closest("[data-copy]"));
+      } else if (e.target.closest("[data-reset]")) {
+        delete st[t.id];
+        store(TKEY, st);
+        el.outerHTML = ticketHTML(t, null).replace("reveal", "reveal in");
+      }
+    });
+  }
+
+  /* ---------- «открой, когда» ---------- */
+  function renderEnvelopes() {
+    var items = D.openWhen || [];
+    var box = $("[data-envelopes]");
+    var dlg = $("[data-dialog]");
+    box.innerHTML = items.map(function (l, i) {
+      return '<button class="envelope reveal" type="button" data-i="' + i + '"><small>открой, когда</small><strong>' +
+        esc(l.when) + "</strong></button>";
+    }).join("");
+
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest(".envelope");
+      if (!b) return;
+      var l = items[+b.dataset.i];
+      if (!l) return;
+      $("[data-letter-when]").textContent = "открой, когда " + l.when;
+      $("[data-letter-title]").textContent = l.title;
+      $("[data-letter-text]").innerHTML = paragraphs(l.text);
+      $("[data-letter-sign]").textContent = l.sign || "";
+      if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  }
+
+  /* ---------- карта и планы ---------- */
+  function renderDistance() {
+    var c = D.cities || ["Ош", "Москва"];
+    $("[data-city-a]").textContent = c[0];
+    $("[data-city-b]").textContent = c[1];
+    var km = Math.round((D.km || 0) / 10) * 10;
+    if (km) $("[data-km]").textContent = "≈ " + km.toLocaleString("ru-RU") + " км";
+
+    $("[data-plans]").innerHTML = (D.plans || []).map(function (p) {
+      return '<li class="reveal' + (p.done ? " done" : "") + '"><span class="box">' + (p.done ? "✓" : "") +
+        "</span><span>" + esc(p.text) + "</span></li>";
+    }).join("");
+
+    var meet = parseDate(D.nextMeeting);
+    $("[data-plan-date]").textContent = meet
+      ? "Дата встречи: " + fmtDate(meet) + "."
+      : "Дата пока неизвестна: примерно весна или лето. Как только появится, здесь начнётся отсчёт.";
+  }
+
+  /* ---------- появление при прокрутке ---------- */
+  function setupReveal() {
+    var els = document.querySelectorAll(".reveal:not(.in)");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach(function (el) { el.classList.add("in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  renderCounters();
+  renderStory();
+  renderPhotos();
+  renderQuotes();
+  renderVoices();
+  renderDict();
+  renderTickets();
+  renderEnvelopes();
+  renderDistance();
+  setupReveal();
+})();
+
+</script>
+  </body>
+</html>
